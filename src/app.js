@@ -1,7 +1,11 @@
 import express from "express";
-const app = express();
 import projectsRoutes from './routes/projects.routes.js'
 
+
+const app = express();
+
+// Middlewares
+app.use(express.json());
 
 app.use(projectsRoutes)
 

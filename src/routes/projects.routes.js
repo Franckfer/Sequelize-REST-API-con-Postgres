@@ -1,24 +1,17 @@
 import {Router} from 'express';
 const router = Router();
+import { getProjects, createProject, updateProjects, deleteProjects} from '../controllers/projects.controller.js'
 
 router
-    .get('/projects', async (req, res) => {
-
-    })
-    .post('/projects', async (req, res) => {
-
-    })
-    .put('/projects/:id', async (req, res) => {
-
-    })
-    .delete('/projects/:id', async (req, res) => {
-
-    })
+    .get('/projects', getProjects)
+    .post('/projects', createProject)
+    .put('/projects/:id', updateProjects)
+    .delete('/projects/:id', deleteProjects)
     .get('/projects/:id', async (req, res) => {
 
     })
 
-    
+
 
 
 export default router;
