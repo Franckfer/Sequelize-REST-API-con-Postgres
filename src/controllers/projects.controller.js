@@ -15,6 +15,29 @@ export const getProjects = async (req, res) => {
     }
 }
 
+export const getProject = async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+
+        const project = await Project.findOne({
+            where : { id }
+        })
+    
+        if (!project)  return res.status(404).json({message : 'Project do not exists'})
+        
+        return res.json(project)
+        
+    } catch (error) {
+        
+        console.error(error);
+        return res.status(500).json({
+            message: error.message
+        })
+    }
+}
+
 export const createProject = (req, res) => {
 
     const { name, priority, description } = req.body
