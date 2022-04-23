@@ -1,4 +1,6 @@
-import {Project} from '../models/Project.js';
+import { Project } from '../models/Project.js';
+import { Task } from '../models/Task.js';
+
 
 export const getProjects = async (req, res) => {
     
@@ -26,7 +28,7 @@ export const getProject = async (req, res) => {
         })
     
         if (!project)  return res.status(404).json({message : 'Project do not exists'})
-        
+
         return res.json(project)
         
     } catch (error) {
@@ -103,4 +105,30 @@ export const deleteProjects = async (req, res) => {
             message: error.message
         })
     }
+
+}
+
+export const getProjectTasks = async (req, res) => {
+
+    const { id } = req.params;
+
+    try {
+        
+        const tasks = await Task.findAll({
+            where: { projectId : id}
+        })
+
+        return res.json(tasks);
+
+    } catch (error) {
+        
+        console.error(error);
+        return res.status(500).json({
+            message: error.message
+        })
+
+    }
+
+
+
 }
